@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
-Widget buildPostItem(posts) => Padding(
+import '../../data/model/post.dart';
+
+Widget buildPostItem(Post post) => Padding(
   padding: const EdgeInsets.all(20.0),
   child: Row(
     children: [
@@ -10,7 +12,7 @@ Widget buildPostItem(posts) => Padding(
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10.0),
             image: DecorationImage(image: NetworkImage(
-               '${posts['image']}'),
+               post.image!),
                 fit: BoxFit.cover
             )
         ),
@@ -24,8 +26,8 @@ Widget buildPostItem(posts) => Padding(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Text('${posts['text']}', style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w600),),
-            Text('${posts['publishDate']}', style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w600, color: Colors.grey),),
+            Text(post.text!, style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w600),),
+            Text(post.publishDate!, style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w600, color: Colors.grey),),
             Text('Title', style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w600),)
           ],
         ),

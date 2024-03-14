@@ -1,14 +1,13 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:ninjaz_posts_app/layout/home_layout.dart';
-import 'package:ninjaz_posts_app/shared/network/remote/dio_helper.dart';
-import 'shared/bloc_observer.dart';
+import 'package:ninjaz_posts_app/presentation/layout/home_layout.dart';
+import 'package:ninjaz_posts_app/data/remote/remote_data_source.dart';
+import 'presentation/bloc/bloc_observer.dart';
 
 void main() {
   Bloc.observer = MyBlocObserver();
-  DioHelper.init();
-  runApp(PostsApp());
+  runApp(const PostsApp());
 }
 
 class PostsApp extends StatelessWidget {
@@ -33,7 +32,7 @@ class PostsApp extends StatelessWidget {
           elevation: 0.0
         )
       ),
-      home: HomeScreen(),
+      home: const HomeScreen(),
       debugShowCheckedModeBanner: false,
     );
   }
