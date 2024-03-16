@@ -8,7 +8,7 @@ Widget buildPostItem(Post post) => Padding(
     children: [
       Container(
         width: 120.0,
-        height: 120.0,
+        height: 220.0,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10.0),
             image: DecorationImage(image: NetworkImage(
