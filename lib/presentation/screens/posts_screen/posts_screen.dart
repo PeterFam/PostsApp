@@ -36,7 +36,7 @@ class PostsScreen2 extends StatelessWidget {
         }
         return RefreshIndicator(
           onRefresh: () async => bloc.add( OnRefreshData()),
-          child: ListView.separated(
+          child: ListView.builder(
               controller: bloc.scrollController,
               itemBuilder: (context, index) {
                 if (index == bloc.postsList.length) {
@@ -58,7 +58,6 @@ class PostsScreen2 extends StatelessWidget {
                 final Post post = bloc.postsList[index];
                 return buildPostItem(post);
               },
-              separatorBuilder: (context, index) => listDivider(),
               itemCount: bloc.isLoadMore ? bloc.postsList.length + 1 : bloc.postsList.length),
         );
       },

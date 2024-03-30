@@ -10,8 +10,7 @@ import '../../data/remote/remote_data_source.dart';
 class Repo extends BaseRepo {
   final RemoteData remoteData;
   final NetworkInfo networkInfo;
-
-  Repo({required this.remoteData,required this.networkInfo});
+  Repo({required this.remoteData, required this.networkInfo});
 
   @override
   Future<Either<Failure, List<Post>>> getData(
