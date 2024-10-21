@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:ninjaz_posts_app/data/local/repository/isar_post_repo.dart';
 import 'package:ninjaz_posts_app/domain/repo/base_repo.dart';
 
 import '../../core/handle_error/exceptions.dart';
@@ -10,7 +11,9 @@ import '../../data/remote/remote_data_source.dart';
 class Repo extends BaseRepo {
   final RemoteData remoteData;
   final NetworkInfo networkInfo;
-  Repo({required this.remoteData, required this.networkInfo});
+  final IsarPostRepo postRepo;
+
+  Repo({required this.remoteData, required this.networkInfo, required this.postRepo});
 
   @override
   Future<Either<Failure, List<Post>>> getData(
@@ -19,13 +22,25 @@ class Repo extends BaseRepo {
       try {
         final result = await remoteData.getData(
             pageNumber: pageNumber);
+        for (var post in result) {
+        await postRepo.addPost(post);
+        print(post);
+        }
         return Right(result);
       } on ServerException catch (failure) {
         return left(ServerFailure(message: failure.message.toString()));
       }
     } else {
-      //get posts from database
-      return left(const ServerFailure(message: 'No Internet Connection'));
+
+     final postsList = await postRepo.getPostsList();
+      if(postsList.isNotEmpty){
+        //get posts from database
+          return Right(postsList);
+
+      }else {
+        return left(const ServerFailure(message: 'No Internet Connection'));
+      }
+
     }
   }
 }
