@@ -7,7 +7,6 @@ import 'package:ninjaz_posts_app/presentation/bloc/posts_bloc.dart';
 import 'package:ninjaz_posts_app/presentation/bloc/posts_events.dart';
 import 'package:ninjaz_posts_app/presentation/bloc/posts_states.dart';
 
-import '../../../core/widgets/list_divider.dart';
 import '../../../data/model/post.dart';
 
 class PostsScreen2 extends StatelessWidget {
